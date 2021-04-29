@@ -57,6 +57,9 @@ class _FixedSizeHashMap:
             else:
                 return args[0]
 
+    def popitem(self):
+        return self.pop(self.keys().__next__())
+
     def copy(self):
         h = _FixedSizeHashMap()
 
@@ -66,17 +69,13 @@ class _FixedSizeHashMap:
         return h
 
     def items(self):
-        result = list()
-        for bucket_list in self.table:
-            result.extend(bucket_list)
-
-        return result
+        return (item for bucket_list in self.table for item in bucket_list)
 
     def keys(self):
-        return [x[0] for x in self.items()]
+        return (x[0] for x in self.items())
 
     def values(self):
-        return [x[1] for x in self.items()]
+        return (x[1] for x in self.items())
 
     def update(self, iterable):
         for (key, value) in iterable.items():
