@@ -96,3 +96,15 @@ class _FixedSizeHashMap:
             result.insert(key, value)
 
         return result
+
+    def __len__(self):
+        return self.length
+
+    def __str__(self):
+        result = '{'
+        result += ", ".join([f'{key}: {value}' for (key, value) in self.items()])
+        result += '}'
+        return result
+
+    def __delitem__(self, key):
+        self.pop(key)
