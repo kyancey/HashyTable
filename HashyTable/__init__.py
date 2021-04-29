@@ -11,4 +11,9 @@ if __name__ == "__main__":
     h["sun roof"] = 45
     h["az"] = "Arizona"
     h["ar"] = "Arkansas"
+
+    j = _FixedSizeHashMap(4)
+    j[233] = 54
+    j["cow"] = "holstein"
+    j[("hello", "world")] = 12
     placeholder = 12

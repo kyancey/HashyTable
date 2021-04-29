@@ -77,3 +77,14 @@ class _FixedSizeHashMap:
 
     def values(self):
         return [x[1] for x in self.items()]
+
+    def update(self, iterable):
+        for (key, value) in iterable.items():
+            self.insert(key, value)
+
+    def setdefault(self, key, value=None):
+        if key in self:
+            return self[key]
+        else:
+            self.insert(key, value)
+            return value
