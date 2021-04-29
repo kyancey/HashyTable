@@ -71,3 +71,9 @@ class _FixedSizeHashMap:
             result.extend(bucket_list)
 
         return result
+
+    def keys(self):
+        return [x[0] for x in self.items()]
+
+    def values(self):
+        return [x[1] for x in self.items()]
