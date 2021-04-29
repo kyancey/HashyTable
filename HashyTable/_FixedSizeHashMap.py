@@ -14,9 +14,11 @@ class _FixedSizeHashMap:
         for i in range(len(bucket_list)):
             if bucket_list[i][0] == key:
                 del bucket_list[i]
+                self.length -= 1
                 break
 
         bucket_list.append((key, value))
+        self.length += 1
 
     def __setitem__(self, key, value):
         self.insert(key, value)
@@ -40,3 +42,22 @@ class _FixedSizeHashMap:
             return True
         except KeyError:
             return False
+
+    def clear(self):
+        for i in range(len(self.table)):
+            self.table[i] = []
+        self.length = 0
+
+    def pop(self, key, *args):
+        for bl in range(len(self.table)):
+            for i in range(len(self.table[bl])):
+                if self.table[bl][i][0] == key:
+                    result = self.table[bl][i][0]
+                    del self.table[bl][i]
+                    self.length -= 1
+                    return result
+        else:
+            if len(args) == 0:
+                raise KeyError
+            else:
+                return args[0]
