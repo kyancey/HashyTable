@@ -107,3 +107,6 @@ class _FixedSizeHashMap:
 
     def __delitem__(self, key):
         self.pop(key)
+
+    def __iter__(self):
+        return self.keys()
