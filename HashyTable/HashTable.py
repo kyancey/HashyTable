@@ -1,6 +1,9 @@
+
+
 class HashTable:
     def __init__(self, array_size: int = 10):
         self.table = list()
+        self.capacity = array_size
 
         for x in range(array_size):
             self.table.append(list())
@@ -14,6 +17,9 @@ class HashTable:
 
         bucket_list.append((key, value))
         self.length += 1
+
+        if len(bucket_list) > 10:
+            self.resize(self.capacity * 2)
 
     def __setitem__(self, key, value):
         self.insert(key, value)
@@ -119,3 +125,4 @@ class HashTable:
 
         self.table = new_hash.table
         self.length = new_hash.length
+        self.capacity = new_hash.capacity
