@@ -116,7 +116,6 @@ class HashTable:
 
         for (key, value) in self.items():
             new_hash.insert(key, value)
-            del self[key]
 
         self.table = new_hash.table
         self.length = new_hash.length
