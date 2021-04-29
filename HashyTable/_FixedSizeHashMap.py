@@ -6,7 +6,7 @@ class _FixedSizeHashMap:
             self.table.append(list())
         self.length = 0
 
-    def insert(self, key: int, value):
+    def insert(self, key, value):
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 
@@ -18,10 +18,10 @@ class _FixedSizeHashMap:
 
         bucket_list.append((key, value))
 
-    def __setitem__(self, key: int, value):
+    def __setitem__(self, key, value):
         self.insert(key, value)
 
-    def search(self, key: int):
+    def search(self, key):
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 
