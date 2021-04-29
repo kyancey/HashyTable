@@ -1,8 +1,8 @@
-from _FixedSizeHashMap import _FixedSizeHashMap
+from HashyTable.HashTable import HashTable
 
 if __name__ == "__main__":
     print("Doing some tests")
-    h = _FixedSizeHashMap(2)
+    h = HashTable(2)
     h.insert(23, "Kyle Yancey")
     h[52332] = "Cat"
     h["name"] = "Todd"
@@ -12,7 +12,7 @@ if __name__ == "__main__":
     h["az"] = "Arizona"
     h["ar"] = "Arkansas"
 
-    j = _FixedSizeHashMap(4)
+    j = HashTable(4)
     j[233] = 54
     j["cow"] = "holstein"
     j[("hello", "world")] = 12

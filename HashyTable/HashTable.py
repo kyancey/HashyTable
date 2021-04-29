@@ -1,4 +1,4 @@
-class _FixedSizeHashMap:
+class HashTable:
     def __init__(self, array_size: int = 10):
         self.table = list()
 
@@ -61,7 +61,7 @@ class _FixedSizeHashMap:
         return self.pop(self.keys().__next__())
 
     def copy(self):
-        h = _FixedSizeHashMap()
+        h = HashTable()
 
         for (key, value) in self.items():
             h.insert(key, value)
@@ -89,7 +89,7 @@ class _FixedSizeHashMap:
             return value
 
     def fromkeys(self, keys, value=None):
-        result = _FixedSizeHashMap()
+        result = HashTable()
 
         for key in keys:
             result.insert(key, value)
@@ -110,3 +110,13 @@ class _FixedSizeHashMap:
 
     def __iter__(self):
         return self.keys()
+
+    def resize(self, array_size):
+        new_hash = HashTable(array_size)
+
+        for (key, value) in self.items():
+            new_hash.insert(key, value)
+            del self[key]
+
+        self.table = new_hash.table
+        self.length = new_hash.length
