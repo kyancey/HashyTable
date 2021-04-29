@@ -18,7 +18,7 @@ class _FixedSizeHashMap:
     def __setitem__(self, key, value):
         self.insert(key, value)
 
-    def search(self, key):
+    def get(self, key):
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 
@@ -29,11 +29,11 @@ class _FixedSizeHashMap:
             raise KeyError
 
     def __getitem__(self, item):
-        return self.search(item)
+        return self.get(item)
 
     def __contains__(self, item):
         try:
-            value = self.search(item)
+            value = self.get(item)
             return True
         except KeyError:
             return False
@@ -88,3 +88,11 @@ class _FixedSizeHashMap:
         else:
             self.insert(key, value)
             return value
+
+    def fromkeys(self, keys, value=None):
+        result = _FixedSizeHashMap()
+
+        for key in keys:
+            result.insert(key, value)
+
+        return result
