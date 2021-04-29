@@ -10,12 +10,7 @@ class _FixedSizeHashMap:
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 
-        # Remove the key-value pair if already in hashmap
-        for i in range(len(bucket_list)):
-            if bucket_list[i][0] == key:
-                del bucket_list[i]
-                self.length -= 1
-                break
+        self.pop(key, None)
 
         bucket_list.append((key, value))
         self.length += 1
@@ -61,3 +56,18 @@ class _FixedSizeHashMap:
                 raise KeyError
             else:
                 return args[0]
+
+    def copy(self):
+        h = _FixedSizeHashMap()
+
+        for (key, value) in self.items():
+            h.insert(key, value)
+
+        return h
+
+    def items(self):
+        result = list()
+        for bucket_list in self.table:
+            result.extend(bucket_list)
+
+        return result
